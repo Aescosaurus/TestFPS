@@ -35,7 +35,7 @@ public class PlayerMove
 		}
 		
 		jumping = false;
-		if( Input.GetKey( KeyCode.Space ) && touchingGround )
+		if( Input.GetAxis( "Jump" ) > 0.0f && touchingGround )
 		{
 			jumping = true;
 		}
