@@ -29,7 +29,7 @@ public class PlayerPickup
 					holdDist * 2.0f,LayerMask.GetMask( "Movable" ) ) )
 				{
 					heldObject = hit.rigidbody;
-					heldObject.GetComponent<Rigidbody>().useGravity = false;
+					heldObject.useGravity = false;
 				}
 			}
 			else
@@ -43,17 +43,16 @@ public class PlayerPickup
 		{
 			var desiredPos = transform.position +
 				cam.transform.forward * holdDist;
-			// var diff = desiredPos - heldObject.transform.position;
-			// 
-			// if( diff.sqrMagnitude > Mathf.Pow(
-			// 	correctionSpeed * Time.deltaTime,2 ) )
-			// {
-			// 	heldObject.transform.position += diff.normalized *
-			// 		correctionSpeed * Time.fixedDeltaTime;
-			// }
+			var diff = desiredPos - heldObject.transform.position;
 
-			heldObject.transform.position = desiredPos;
+			// heldObject.transform.Translate( diff * correctionSpeed *
+			// 	Time.deltaTime );
+			heldObject.transform.position += diff;
+
+			// heldObject.transform.position = desiredPos;
 			heldObject.transform.rotation = cam.transform.rotation;
+
+			heldObject.velocity = Vector3.zero;
 
 			if( Input.GetAxis( "Attack" ) > 0.0f )
 			{
@@ -73,7 +72,7 @@ public class PlayerPickup
 	Camera cam;
 
 	[SerializeField] float holdDist = 1.5f;
-	// [SerializeField] float correctionSpeed = 0.9f;
+	[SerializeField] float correctionSpeed = 0.9f;
 	[SerializeField] Timer pickupBuffer = new Timer( 0.2f );
 	[SerializeField] float throwForce = 2.0f;
 

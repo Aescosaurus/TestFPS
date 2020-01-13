@@ -537,6 +537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdDist: 1.5
+  correctionSpeed: 12.73
   pickupBuffer:
     duration: 0.2
   throwForce: 5

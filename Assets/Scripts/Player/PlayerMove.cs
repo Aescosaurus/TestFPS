@@ -39,10 +39,7 @@ public class PlayerMove
 		{
 			jumping = true;
 		}
-	}
 
-	void FixedUpdate()
-	{
 		var forward = cam.forward;
 		forward.y = 0.0f;
 
