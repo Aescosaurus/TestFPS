@@ -15,6 +15,7 @@ public class PlayerPickup
 
 	void Update()
 	{
+		// Check for input for picking up objects.
 		pickupBuffer.Update( Time.deltaTime );
 		if( Input.GetAxis( "Interact" ) > 0.0f &&
 			pickupBuffer.IsDone() )
@@ -27,7 +28,7 @@ public class PlayerPickup
 					cam.transform.forward,out hit,
 					holdDist * 2.0f,LayerMask.GetMask( "Movable" ) ) )
 				{
-					heldObject = hit.transform.gameObject;
+					heldObject = hit.rigidbody;
 					heldObject.GetComponent<Rigidbody>().useGravity = false;
 				}
 			}
@@ -36,20 +37,30 @@ public class PlayerPickup
 				DropObject();
 			}
 		}
-	}
 
-	void FixedUpdate()
-	{
+		// Move object if one is held.
 		if( heldObject != null )
 		{
 			var desiredPos = transform.position +
 				cam.transform.forward * holdDist;
-			// var diff = heldObject.transform.position - desiredPos;
+			// var diff = desiredPos - heldObject.transform.position;
 			// 
-			// heldObject.transform.position += diff.normalized *
-			// 	correctionSpeed * Time.fixedDeltaTime;
+			// if( diff.sqrMagnitude > Mathf.Pow(
+			// 	correctionSpeed * Time.deltaTime,2 ) )
+			// {
+			// 	heldObject.transform.position += diff.normalized *
+			// 		correctionSpeed * Time.fixedDeltaTime;
+			// }
+
 			heldObject.transform.position = desiredPos;
 			heldObject.transform.rotation = cam.transform.rotation;
+
+			if( Input.GetAxis( "Attack" ) > 0.0f )
+			{
+				heldObject.AddForce( cam.transform.forward *
+					throwForce,ForceMode.Impulse );
+				DropObject();
+			}
 		}
 	}
 
@@ -64,6 +75,7 @@ public class PlayerPickup
 	[SerializeField] float holdDist = 1.5f;
 	// [SerializeField] float correctionSpeed = 0.9f;
 	[SerializeField] Timer pickupBuffer = new Timer( 0.2f );
+	[SerializeField] float throwForce = 2.0f;
 
-	GameObject heldObject = null;
+	Rigidbody heldObject = null;
 }
