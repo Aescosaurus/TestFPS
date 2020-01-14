@@ -69,6 +69,11 @@ public class PlayerPickup
 		heldObject = null;
 	}
 
+	public bool HoldingObject()
+	{
+		return( heldObject != null );
+	}
+
 	Camera cam;
 
 	[SerializeField] float holdDist = 1.5f;

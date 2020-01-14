@@ -155,3 +155,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifetimer:
     duration: 1
+  knockback: 1
