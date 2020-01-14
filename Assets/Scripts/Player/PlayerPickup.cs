@@ -72,7 +72,7 @@ public class PlayerPickup
 	Camera cam;
 
 	[SerializeField] float holdDist = 1.5f;
-	[SerializeField] float correctionSpeed = 0.9f;
+	// [SerializeField] float correctionSpeed = 0.9f;
 	[SerializeField] Timer pickupBuffer = new Timer( 0.2f );
 	[SerializeField] float throwForce = 2.0f;
 
