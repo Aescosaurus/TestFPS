@@ -25,6 +25,6 @@ public class AIWalk
 		}
 	}
 
-	[SerializeField] float speed = 10.0f;
+	[SerializeField] float speed = 1.5f;
 	[SerializeField] Timer walkDuration = new Timer( 5.0f );
 }
