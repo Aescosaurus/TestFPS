@@ -111,7 +111,8 @@ artifacts/
 *_i.h
 *.ilk
 *.meta
-*.obj
+# These are the models, we need these lol.
+# *.obj
 *.pch
 *.pdb
 *.pgc
