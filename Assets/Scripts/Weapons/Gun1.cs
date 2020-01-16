@@ -53,7 +53,7 @@ public class Gun1
 	Camera cam;
 
 	[SerializeField] Timer refire = new Timer( 0.3f );
-	[SerializeField] float bulletSpeed = 10.0f;
+	// [SerializeField] float bulletSpeed = 10.0f;
 	[SerializeField] float range = 50.0f;
 	[SerializeField] float knockback = 1.2f;
 }
